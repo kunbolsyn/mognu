@@ -13,9 +13,9 @@ function Footer() {
       <nav>
         <ul>
           <li>
-            <a href="/shop">
+            <a href="/main">
               <FontAwesomeIcon icon={faShoppingCart} />
-              <span>Shop</span>
+              <span>Main</span>
             </a>
           </li>
           <li>
