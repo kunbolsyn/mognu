@@ -21,27 +21,27 @@ import Footer from "./Footer";
 import "./Main.css";
 
 const categories = [
-  { name: "Супермаркеты", icon: faShoppingCart, color: "#FF0000" },
-  { name: "Одежда и обувь", icon: faTshirt, color: "#00FF00" },
-  { name: "Кафе и рестораны", icon: faCoffee, color: "#0000FF" },
-  { name: "Доставка еды", icon: faHamburger, color: "#FFFF00" },
-  { name: "Образование", icon: faBook, color: "#00FFFF" },
-  { name: "Салоны красоты и косметика", icon: faPaintBrush, color: "#FF00FF" },
-  { name: "Кино и музыка онлайн", icon: faFilm, color: "#C0C0C0" },
-  { name: "Фитнес и SPA", icon: faDumbbell, color: "#808080" },
-  { name: "Мебель", icon: faCouch, color: "#800000" },
-  { name: "Игровые сервисы", icon: faGamepad, color: "#808000" },
-  { name: "Медицинские услуги", icon: faStethoscope, color: "#008000" },
-  { name: "Путешествия", icon: faPlane, color: "#008080" },
-  { name: "Такси", icon: faTaxi, color: "#000080" },
-  { name: "Товары для детей", icon: faBaby, color: "#800080" },
-  { name: "Питомцы", icon: faPaw, color: "#808080" },
+  { name: "Супермаркеты", icon: faShoppingCart, color: "#FF6347" }, // Tomato
+  { name: "Одежда и обувь", icon: faTshirt, color: "#32CD32" }, // LimeGreen
+  { name: "Кафе и рестораны", icon: faCoffee, color: "#FF4500" }, // OrangeRed
+  { name: "Доставка еды", icon: faHamburger, color: "#FFD700" }, // Gold
+  { name: "Образование", icon: faBook, color: "#00BFFF" }, // DeepSkyBlue
+  { name: "Салоны красоты и косметика", icon: faPaintBrush, color: "#9370DB" }, // MediumPurple
+  { name: "Кино и музыка онлайн", icon: faFilm, color: "#7B68EE" }, // MediumSlateBlue
+  { name: "Фитнес и SPA", icon: faDumbbell, color: "#20B2AA" }, // LightSeaGreen
+  { name: "Мебель", icon: faCouch, color: "#DC143C" }, // Crimson
+  { name: "Игровые сервисы", icon: faGamepad, color: "#4682B4" }, // SteelBlue
+  { name: "Медицинские услуги", icon: faStethoscope, color: "#556B2F" }, // DarkOliveGreen
+  { name: "Путешествия", icon: faPlane, color: "#00CED1" }, // DarkTurquoise
+  { name: "Такси", icon: faTaxi, color: "#800080" }, // Purple
+  { name: "Товары для детей", icon: faBaby, color: "#FF1493" }, // DeepPink
+  { name: "Питомцы", icon: faPaw, color: "#3CB371" }, // MediumSeaGreen
 ];
 
 const Main = () => {
   return (
     <div className="categories">
-      <h1>Categories</h1>
+      <h1 className="categories-header">Categories</h1>
       <div className="category-grid">
         {categories.map((category, index) => (
           <div key={index} className="category">

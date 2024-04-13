@@ -1,4 +1,4 @@
-.Cards-header {
+.cards {
   padding-left: 20px;
 }
 
@@ -11,7 +11,6 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  padding-left: 20px;
   border-radius: 5px;
   font-size: 18px;
 }
