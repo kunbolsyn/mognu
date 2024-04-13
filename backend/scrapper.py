@@ -12,8 +12,8 @@ def no_bad_words(word):
 
 class my_url():
     
-    def __init__(self,url,lvl):
-        self.url = url
+    def __init__(self,url1,lvl):
+        self.url = url1
         self.lvl = lvl
         
 class Scrapper():
