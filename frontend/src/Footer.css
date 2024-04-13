@@ -1,0 +1,24 @@
+.Footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f8f9fa;
+}
+
+.Footer nav ul {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+}
+
+.Footer nav ul li a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #333;
+  text-decoration: none;
+}
+
+.Footer nav ul li a span {
+  margin-top: 5px;
+}

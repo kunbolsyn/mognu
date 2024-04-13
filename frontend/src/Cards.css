@@ -1,0 +1,21 @@
+.Cards-header {
+  padding-left: 20px;
+}
+
+.add-card-button {
+  background-color: rgb(32, 130, 109);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+.add-card-button span {
+  margin-left: 5px;
+}
