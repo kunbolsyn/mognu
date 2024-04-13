@@ -1,9 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faShoppingCart,
-  faCreditCard,
-} from "@fortawesome/free-solid-svg-icons";
+import { faHome, faCreditCard } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import "./Footer.css";
 
@@ -14,14 +11,14 @@ function Footer() {
         <ul>
           <li>
             <Link to="/">
-              <FontAwesomeIcon icon={faShoppingCart} />
-              <span>Main</span>
+              <FontAwesomeIcon icon={faHome} />
+              <span>Главная</span>
             </Link>
           </li>
           <li>
             <Link to="/cards">
               <FontAwesomeIcon icon={faCreditCard} />
-              <span>My Cards</span>
+              <span>Мои карты</span>
             </Link>
           </li>
         </ul>

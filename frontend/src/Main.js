@@ -41,7 +41,7 @@ const categories = [
 const Main = () => {
   return (
     <div className="categories">
-      <h1 className="categories-header">Categories</h1>
+      <h1 className="categories-header">Категории</h1>
       <div className="category-grid">
         {categories.map((category, index) => (
           <div key={index} className="category">

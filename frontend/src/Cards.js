@@ -19,12 +19,12 @@ function Cards() {
   return (
     <div>
       <div className="cards">
-        <h1 className="cards-header">My Cards</h1>
+        <h1 className="cards-header">Мои карты</h1>
         <button className="add-card-button" onClick={handleAddCardClick}>
           {" "}
           {/* Added onClick event here */}
           <FontAwesomeIcon icon={faPlus} />
-          <span>Add Card</span>
+          <span>Добавить карту</span>
         </button>
 
         {/* Include the AddCard component and pass props */}
