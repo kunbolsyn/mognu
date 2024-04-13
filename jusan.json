@@ -1,0 +1,128 @@
+{
+  "bank": "Jusan",
+  "categories": [
+    {
+      "category": "Супермаркеты",
+      "category_description": "Во всех супермаркетах Казахстана.",
+      "mcc": "5411",
+      "cashback_offers": [
+        {"requirement": "Зарплатная карта", "cashback_value": "3%"},
+        {"requirement": "Elite card или Jusan pay", "cashback_value": "5%"}
+      ]
+    },
+    {
+      "category": "Одежда и обувь",
+      "category_description": "Во всех магазинах мужской, женской и детской одежды.",
+      "mcc": "5691",
+      "cashback_offers": [
+        {"requirement": "", "cashback_value": "3%"},
+        {"requirement": "Elite card или Jusan pay", "cashback_value": "5%"}
+      ]
+    },
+    {
+      "category": "Кафе и рестораны",
+      "category_description": "Во всех кафе, ресторанах, барах, кофейнях и других заведениях.",
+      "mcc": "5812",
+      "cashback_offers": [
+        {"requirement": "", "cashback_value": "3%"},
+        {"requirement": "Elite card или Jusan pay", "cashback_value": "5%"}
+      ]
+    },
+    {
+      "category": "Доставка еды",
+      "category_description": "Доставка готовой еды курьером из ресторанов и кафе с оплатой заказа в Интернете.",
+      "mcc": "5812",
+      "cashback_offers": [
+        {"requirement": "", "cashback_value": "5%"}
+      ]
+    },
+    {
+      "category": "Образование",
+      "category_description": "В образовательных учреждениях.",
+      "mcc": "8299",
+      "cashback_offers": [
+        {"requirement": "", "cashback_value": "5%"}
+      ]
+    },
+    {
+      "category": "Салоны красоты и косметика",
+      "category_description": "В магазинах парфюмерии, салонах красоты и парикмахерских.",
+      "mcc": "7230",
+      "cashback_offers": [
+        {"requirement": "", "cashback_value": "5%"}
+      ]
+    },
+    {
+      "category": "Кино и музыка онлайн",
+      "category_description": "В различных онлайн-сервисах.",
+      "mcc": "5735",
+      "cashback_offers": [
+        {"requirement": "", "cashback_value": "15%"}
+      ]
+    },
+    {
+      "category": "Фитнес и SPA",
+      "category_description": "Фитнес, спортзалы, SPA-центры.",
+      "mcc": "7997",
+      "cashback_offers": [
+        {"requirement": "", "cashback_value": "5%"}
+      ]
+    },
+    {
+      "category": "Мебель",
+      "category_description": "Мебель и бытовые принадлежности.",
+      "mcc": "5712",
+      "cashback_offers": [
+        {"requirement": "", "cashback_value": "5%"}
+      ]
+    },
+    {
+      "category": "Игровые сервисы",
+      "category_description": "Приложения, игры, Steam и прочие игровые магазины.",
+      "mcc": "7994",
+      "cashback_offers": [
+        {"requirement": "", "cashback_value": "10%"}
+      ]
+    },
+    {
+      "category": "Медицинские услуги",
+      "category_description": "Медицинские центры, больницы, стоматология и лаборатории.",
+      "mcc": "8011",
+      "cashback_offers": [
+        {"requirement": "", "cashback_value": "5%"}
+      ]
+    },
+    {
+      "category": "Путешествия",
+      "category_description": "Билеты всех авиалиний, туристические агентства и организаторы экскурсий.",
+      "mcc": "4722",
+      "cashback_offers": [
+        {"requirement": "", "cashback_value": "5%"}
+      ]
+    },
+    {
+      "category": "Такси",
+      "category_description": "Услуги по транспортировке пассажиров в автомобилях и службах такси.",
+      "mcc": "4121",
+      "cashback_offers": [
+        {"requirement": "", "cashback_value": "7%"}
+      ]
+    },
+    {
+      "category": "Товары для детей",
+      "category_description": "Магазины детской одежды, игрушек и принадлежностей.",
+      "mcc": "5944",
+      "cashback_offers": [
+        {"requirement": "", "cashback_value": "5%"}
+      ]
+    },
+    {
+      "category": "Питомцы",
+      "category_description": "Ветеринарные услуги, зоомагазины.",
+      "mcc": "0752",
+      "cashback_offers": [
+        {"requirement": "", "cashback_value": "5%"}
+      ]
+    }
+  ]
+}
