@@ -1,47 +1,77 @@
 import React, { useState } from "react";
 import "./Add_card.css";
 
-function AddCard({ isOpen, onClose }) {
+function AddCard({ isOpen, onClose, onSubmit }) {
   const [selectedBank, setSelectedBank] = useState("");
+  const [selectedCard, setSelectedCard] = useState("");
 
   if (!isOpen) return null;
 
   const handleBankChange = (e) => {
     setSelectedBank(e.target.value);
+    switch (e.target.value) {
+      case "Kaspi":
+        setSelectedCard("Gold");
+        break;
+      case "Halyk":
+        setSelectedCard("Silver");
+        break;
+      case "Jusan":
+        setSelectedCard("Basic");
+        break;
+      case "BCC":
+        setSelectedCard("Ironcard");
+        break;
+      default:
+        setSelectedCard("");
+    }
+  };
+
+  const handleCardChange = (e) => {
+    setSelectedCard(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Submitting:", selectedBank, selectedCard); // Check what's being submitted
+    onSubmit({ bank: selectedBank, cardType: selectedCard });
+    onClose();
   };
 
   const getCardOptions = () => {
     switch (selectedBank) {
-      case "kaspi":
-        return <option value="gold">Gold</option>;
-      case "halyk":
+      case "Kaspi":
+        return <option value="Gold">Gold</option>;
+      case "Halyk":
         return (
           <>
-            <option value="silver">Bonus Digital</option>
-            <option value="bonus">Bonus</option>
-            <option value="sd">Sinooil Digital</option>
-            <option value="bc">Black card</option>
-            <option value="dc">Diamond card</option>
+            <option value="Bonus Digital">Bonus Digital</option>
+            <option value="Bonus">Bonus</option>
+            <option value="Sinooil Digital">Sinooil Digital</option>
+            <option value="Black card">Black card</option>
+            <option value="Diamond card">Diamond card</option>
           </>
         );
-      case "jusan":
+      case "Jusan":
         return (
           <>
-            <option value="basic">Basic</option>
-            <option value="vi">Visa Infinite</option>
-            <option value="vs">Visa Signature</option>
-            <option value="mwe">Mastercard World Elite</option>
+            <option value="Basic">Basic</option>
+            <option value="Visa infinite">Visa Infinite</option>
+            <option value="Visa signature">Visa Signature</option>
+            <option value="Mastercard world elite">
+              Mastercard World Elite
+            </option>
           </>
         );
-      case "bcc":
+      case "BCC":
         return (
           <>
-            <option value="ironcard">#Ironcard</option>
-            <option value="tc">#Travelcard</option>
-            <option value="kk">#картакарта</option>
-            <option value="jc">#juniorcard</option>
-            <option value="bcc">#bccpay</option>
-            <option value="uk">ҮлкенгеҚұрмет</option>
+            <option value="Ironcard">#Ironcard</option>
+            <option value="Travelcard">#Travelcard</option>
+            <option value="Kартакарта">#картакарта</option>
+            <option value="Juniorcard">#juniorcard</option>
+            <option value="BCCPay">#bccpay</option>
+            <option value="ҮлкенгеҚұрмет">ҮлкенгеҚұрмет</option>
           </>
         );
       default:
@@ -55,20 +85,22 @@ function AddCard({ isOpen, onClose }) {
         <button className="close-button" onClick={onClose}>
           ×
         </button>
-        <form>
+        <form onSubmit={handleSubmit}>
           {/* Bank Dropdown */}
           <label>Bank:</label>
           <select onChange={handleBankChange}>
             <option value="">Select a bank</option>
-            <option value="kaspi">Kaspi</option>
-            <option value="halyk">Halyk</option>
-            <option value="jusan">Jusan</option>
-            <option value="bcc">bcc</option>
+            <option value="Kaspi">Kaspi</option>
+            <option value="Halyk">Halyk</option>
+            <option value="Jusan">Jusan</option>
+            <option value="BCC">bcc</option>
           </select>
 
           {/* Card Dropdown */}
           <label>Card:</label>
-          <select>{getCardOptions()}</select>
+          <select onChange={handleCardChange}>
+            {getCardOptions(selectedBank)}
+          </select>
 
           <button type="submit" className="submit-button">
             Submit
