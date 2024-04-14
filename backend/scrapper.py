@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 import utils
 from bs4 import BeautifulSoup
 import re, requests
-bad_words = ["signin","register","login","pay","job"]
+bad_words = ["signin","register","shop","login","youtube","pay","job","facebook","instagram","vk","twitter", "linkedin","https://ok.ru/kaspi.kz","ok.ru/kaspi.kz"]
 def no_bad_words(word):
     for w in bad_words:
         if word.find(w) != -1:
@@ -17,7 +17,20 @@ class my_url():
     def __init__(self,url1,lvl):
         self.url = url1
         self.lvl = lvl
-        
+from selenium.common.exceptions import StaleElementReferenceException
+
+def is_element_stale(element, driver):
+    if element == driver:
+        return False
+    try:
+        # Try to access a property of the element
+        _ = element.is_displayed()
+        # If successful, the element is not stale
+        return False
+    except StaleElementReferenceException:
+        # If StaleElementReferenceException is raised, the element is stale
+        return True
+
 class Scrapper():
     def __init__(self,keyword):
         self.driver = webdriver.Chrome()
@@ -26,44 +39,13 @@ class Scrapper():
         self.urls = []
         self.visited = []
         self.max = 4
-    def parse(self,murl):
-        if murl.url in self.urls:
-            return
-        if murl.lvl == self.max:
-            print(murl.lvl,murl.url)
-            return
-        # print(murl.url)
-        self.urls.append(murl.url)
-        self.driver.get(murl.url)
-        links = self.driver.find_elements(by=By.TAG_NAME,value='a')
-        news = []
-        for link in links:
-            new_url = link.get_attribute("href")        
-            if new_url and no_bad_words(new_url.lower()) and new_url.find("kaspi") != -1:
-                if new_url not in self.urls:
-                # print(new_url)
-                    news.append(my_url(new_url,murl.lvl+1))
-        # for n in news:
-        #     print(n.url, n.lvl)
-        # return
-        print(len(news))
-        for i, newurl in enumerate(news):
-            # newurl = my_url(ni,murl.lvl+1)
-            # new_url = link.get_attribute("href")
-            
-            self.parse(newurl)
-            
-            self.driver.get(murl.url)
-            
-            self.urls.append(newurl.url)
-            print(murl.url,i)
-        self.get_all(murl.url)
     def parsing(self, initial_url):
         def find_links(lvl):
             links = self.driver.find_elements(by=By.TAG_NAME,value='a')
             new_urls = []
             for link in links:
-                if link:
+                    if is_element_stale(link, self.driver):
+                        continue
                     new_url = link.get_attribute("href")
                     if new_url and no_bad_words(new_url.lower()) and new_url.find("kaspi") != -1:
                         if new_url not in self.urls:
@@ -101,21 +83,19 @@ class Scrapper():
         self.all_text = []
         self.visited = []
     def find_and_extract_divs(self,url, keyword):
-        # divs = self.driver.find_elements(By.TAG_NAME,"div")
-        # divs[0].text
-        # self.driver.
-        # visited = []
-        # print(soup.url, 8)
-        
         def recurse(source):
             results = []
+            if is_element_stale(source, self.driver):
+                return
             divs = source.find_elements(By.TAG_NAME,"div")
             # print(source.url)
             if divs:
                 for div in divs:
                     if div not in self.visited:
                     # print(div.text)
-                        results.extend(recurse(div))
+                        result = recurse(div)
+                        if result:
+                            results.extend(recurse(div))
                         self.visited.append(div)
             else:
                 if utils.has_same_root(keyword,source.text):
