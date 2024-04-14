@@ -12,6 +12,7 @@ import re
 import utils
 from celery.schedules import crontab
 import openai
+import urllib
 
 class BaseTaskWithRetry(Task):
     autoretry_for = (Exception,)
@@ -104,9 +105,13 @@ def select_banks(self):
     
     # search.apply_async((url, 0), compression='brotli', priority=3)
 
-def checklink(url):
-    if url and url.find("guide.kaspi.kz") != -1 and url.find('shop') == -1:
-        return True
+def checklink(url, bank): 
+    if bank == 'kaspi':
+        if url and url.find("guide.kaspi.kz") != -1 and url.find('shop') == -1 and url.find("pdf") == -1:
+            return True
+    if bank == 'jusan':
+        if url and url.find("jusan.kz/faq") != -1 and url.find("pdf") == -1:
+            return True
     return False
 
 
@@ -114,15 +119,15 @@ def checklink(url):
 def queueing(self, ):
     redis_client.flushdb()
     for url, bank in [
-        ("https://guide.kaspi.kz/client/ru", "kaspi"),
-        # ('https://jusan.kz/faq/bank/cashback-bonus/bon-prog/2459', 'jusan')
+        ("https://guide.kaspi.kz/client/ru/bonus", "kaspi"),
+        ('https://jusan.kz/faq/bank/cashback-bonus/bon-prog/2459', 'jusan')
     ]:
         redis_client.rpush('urls', lzma.compress(pickle.dumps((url, 0))))
         redis_client.execute_command("BF.ADD %s %s" % (bloom_filter_key, url))
         while (redis_client.scard('current')>0 or redis_client.llen('urls')>0):
             if redis_client.llen('urls') > 0:
                 url, depth = pickle.loads(lzma.decompress(redis_client.lpop('urls')))
-                if checklink(url):
+                if checklink(url, bank):
                     redis_client.sadd('current', url)
                     search.apply_async((url, depth), compression='brotli', priority=3)
         logger.info(f"{bank} DONE")
@@ -160,6 +165,16 @@ def prompt(bank):
                 ]}
               ]}
               """}]
+    if message: 
+        messages.append( 
+            {"role": "user", "content": f"Here is the FAQ. {all_text}"}, 
+        ) 
+        chat = openai.chat.completions.create( 
+            model="gpt-3.5-turbo", messages=messages 
+        )
+    reply = chat.choices[0].message.content 
+    with open(f'{bank}_cashbacks.json', 'w', encoding='utf-8') as f:
+        json.dump(all_text, f, ensure_ascii=False, indent=4)
 
 
 @app.task(bind=True, ignore_result=True, base=BaseTaskWithRetry)
@@ -178,7 +193,7 @@ def search(self, url, depth):
         redis_client.srem('current', url)
         return 1
     for a in soup.select('a'):
-        link = a.get('href')
+        link = urllib.parse.urljoin(url, a.get('href'))
         if redis_client.execute_command("BF.EXISTS %s %s" % (bloom_filter_key, link)) == 0:
             redis_client.rpush('urls', lzma.compress(pickle.dumps((link, depth+1))))
             redis_client.execute_command("BF.ADD %s %s" % (bloom_filter_key, link))
@@ -202,6 +217,7 @@ def recurse(soup, url):
 
 # import pymorphy2
 def has_same_root(key, text):
+    return True
     # morph = pymorphy2.MorphAnalyzer()
     # key_lemma = morph.parse(key)[0].normal_form
     words = text.split()  # Split text into words
