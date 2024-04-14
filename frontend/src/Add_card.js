@@ -1,15 +1,15 @@
-import React, { useState } from 'react';  // Ensure useState is imported
-import './Add_card.css';
+import React, { useState } from "react";
+import "./Add_card.css";
 
 function AddCard({ isOpen, onClose, onSubmit }) {
     const [selectedBank, setSelectedBank] = useState('');
     const [selectedCard, setSelectedCard] = useState('');
 
-    if (!isOpen) return null;
+  if (!isOpen) return null;
 
-    const handleBankChange = (e) => {
-        setSelectedBank(e.target.value);
-    };
+  const handleBankChange = (e) => {
+    setSelectedBank(e.target.value);
+  };
 
     const handleCardChange = (e) => {
         setSelectedCard(e.target.value);
@@ -68,6 +68,9 @@ function AddCard({ isOpen, onClose, onSubmit }) {
                 <button className="close-button" onClick={onClose}>×</button>
                 <form onSubmit={handleSubmit}>
 
+          {/* Card Dropdown */}
+          <label>Card:</label>
+          <select>{getCardOptions()}</select>
 
                     {/* Bank Dropdown */}
                     <label>Bank:</label>
@@ -86,11 +89,13 @@ function AddCard({ isOpen, onClose, onSubmit }) {
                     </select>
 
 
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
-        </div>
-    );
+          <button type="submit" className="submit-button">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 }
 
 export default AddCard;
