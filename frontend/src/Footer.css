@@ -22,3 +22,7 @@
 .Footer nav ul li a span {
   margin-top: 5px;
 }
+
+.active-icon {
+  color: rgb(32, 130, 109);
+}

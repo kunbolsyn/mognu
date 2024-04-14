@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faCreditCard } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom"; // Change this line
 import "./Footer.css";
 
 function Footer() {
@@ -10,16 +10,38 @@ function Footer() {
       <nav>
         <ul>
           <li>
-            <Link to="/">
-              <FontAwesomeIcon icon={faHome} />
-              <span>Главная</span>
-            </Link>
+            <NavLink to="/" activeClassName="active-link">
+              <FontAwesomeIcon
+                icon={faHome}
+                className={
+                  window.location.pathname === "/" ? "active-icon" : ""
+                }
+              />
+              <span
+                className={
+                  window.location.pathname === "/" ? "active-icon" : ""
+                }
+              >
+                Главная
+              </span>
+            </NavLink>
           </li>
           <li>
-            <Link to="/cards">
-              <FontAwesomeIcon icon={faCreditCard} />
-              <span>Мои карты</span>
-            </Link>
+            <NavLink to="/cards" activeClassName="active-link">
+              <FontAwesomeIcon
+                icon={faCreditCard}
+                className={
+                  window.location.pathname === "/cards" ? "active-icon" : ""
+                }
+              />
+              <span
+                className={
+                  window.location.pathname === "/cards" ? "active-icon" : ""
+                }
+              >
+                Мои карты
+              </span>
+            </NavLink>
           </li>
         </ul>
       </nav>
