@@ -17,3 +17,11 @@
 .add-card-button span {
   margin-left: 5px;
 }
+
+.card-entry {
+  width: 200px;
+}
+
+.card-entry .fa-credit-card {
+  margin-right: 10px;
+}
