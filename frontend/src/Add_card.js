@@ -1,14 +1,27 @@
 import React, { useState } from 'react';  // Ensure useState is imported
 import './Add_card.css';
 
-function AddCard({ isOpen, onClose }) {
-    const [selectedBank, setSelectedBank] = useState('');  // Initialize state
+function AddCard({ isOpen, onClose, onSubmit }) {
+    const [selectedBank, setSelectedBank] = useState('');
+    const [selectedCard, setSelectedCard] = useState('');
 
     if (!isOpen) return null;
 
     const handleBankChange = (e) => {
         setSelectedBank(e.target.value);
     };
+
+    const handleCardChange = (e) => {
+        setSelectedCard(e.target.value);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('Submitting:', selectedBank, selectedCard);  // Check what's being submitted
+        onSubmit({ bank: selectedBank, cardType: selectedCard });
+        onClose();
+};
+
 
     const getCardOptions = () => {
         switch(selectedBank) {
@@ -53,7 +66,7 @@ function AddCard({ isOpen, onClose }) {
         <div className="add-card-overlay">
             <div className="add-card-content">
                 <button className="close-button" onClick={onClose}>×</button>
-                <form>
+                <form onSubmit={handleSubmit}>
 
 
                     {/* Bank Dropdown */}
@@ -68,9 +81,10 @@ function AddCard({ isOpen, onClose }) {
 
                     {/* Card Dropdown */}
                     <label>Card:</label>
-                    <select>
-                        {getCardOptions()}
+                    <select onChange={handleCardChange}>
+                        {getCardOptions(selectedBank)}
                     </select>
+
 
                     <button type="submit">Submit</button>
                 </form>
