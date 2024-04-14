@@ -24,7 +24,7 @@ def find_and_extract_divs(url, keyword, visited):
     def recurse(source):
         results = []
         divs = source.find_all("div")
-       
+        print(source.url)
         if divs:
             for div in divs:
                 if div not in visited:
