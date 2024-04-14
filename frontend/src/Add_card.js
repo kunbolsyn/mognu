@@ -26,35 +26,35 @@ function AddCard({ isOpen, onClose, onSubmit }) {
     const getCardOptions = () => {
         switch(selectedBank) {
             case 'kaspi':
-                return <option value="gold">Gold</option>;
+                return <option value="Gold">Gold</option>;
             case 'halyk':
                 return (
                     <>
-                        <option value="silver">Bonus Digital</option>
-                        <option value="bonus">Bonus</option>
-                        <option value="sd">Sinooil Digital</option>
-                        <option value="bc">Black card</option>
-                        <option value="dc">Diamond card</option>
+                        <option value="Bonus Digital">Bonus Digital</option>
+                        <option value="Bonus">Bonus</option>
+                        <option value="Sinooil Digital">Sinooil Digital</option>
+                        <option value="Black card">Black card</option>
+                        <option value="Diamond card">Diamond card</option>
                     </>
                 );
             case 'jusan':
                 return (
                     <>
-                        <option value="basic">Basic</option>
-                        <option value="vi">Visa Infinite</option>
-                        <option value="vs">Visa Signature</option>
-                        <option value="mwe">Mastercard World Elite</option>
+                        <option value="Basic">Basic</option>
+                        <option value="Visa infinite">Visa Infinite</option>
+                        <option value="Visa signature">Visa Signature</option>
+                        <option value="Mastercard world elite">Mastercard World Elite</option>
                     </>
                 );
             case 'bcc':
                 return (
                     <>
                         <option value="ironcard">#Ironcard</option>
-                        <option value="tc">#Travelcard</option>
-                        <option value="kk">#картакарта</option>
-                        <option value="jc">#juniorcard</option>
-                        <option value="bcc">#bccpay</option>
-                        <option value="uk">ҮлкенгеҚұрмет</option>
+                        <option value="travelcard">#Travelcard</option>
+                        <option value="картакарта">#картакарта</option>
+                        <option value="juniorcard">#juniorcard</option>
+                        <option value="bccpay">#bccpay</option>
+                        <option value="үлкенгеҚұрмет">ҮлкенгеҚұрмет</option>
                     </>
                 );
             default:
@@ -67,11 +67,8 @@ function AddCard({ isOpen, onClose, onSubmit }) {
             <div className="add-card-content">
                 <button className="close-button" onClick={onClose}>×</button>
                 <form onSubmit={handleSubmit}>
-
-          {/* Card Dropdown */}
-          <label>Card:</label>
-          <select>{getCardOptions()}</select>
-
+ 
+   
                     {/* Bank Dropdown */}
                     <label>Bank:</label>
                     <select onChange={handleBankChange}>
