@@ -17,22 +17,31 @@ function AddCard({ isOpen, onClose }) {
             case 'halyk':
                 return (
                     <>
-                        <option value="silver">Silver</option>
-                        <option value="gold">Gold</option>
+                        <option value="silver">Bonus Digital</option>
+                        <option value="bonus">Bonus</option>
+                        <option value="sd">Sinooil Digital</option>
+                        <option value="bc">Black card</option>
+                        <option value="dc">Diamond card</option>
                     </>
                 );
             case 'jusan':
                 return (
                     <>
                         <option value="basic">Basic</option>
-                        <option value="gold">Gold</option>
+                        <option value="vi">Visa Infinite</option>
+                        <option value="vs">Visa Signature</option>
+                        <option value="mwe">Mastercard World Elite</option>
                     </>
                 );
             case 'bcc':
                 return (
                     <>
-                        <option value="iron">Iron</option>
-                        <option value="bronze">Bronze</option>
+                        <option value="ironcard">#Ironcard</option>
+                        <option value="tc">#Travelcard</option>
+                        <option value="kk">#картакарта</option>
+                        <option value="jc">#juniorcard</option>
+                        <option value="bcc">#bccpay</option>
+                        <option value="uk">ҮлкенгеҚұрмет</option>
                     </>
                 );
             default:
