@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faShoppingCart,
@@ -19,6 +19,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Footer from "./Footer";
 import "./Main.css";
+import CategoryInfo from "./CategoryInfo";
 
 const categories = [
   { name: "Супермаркеты", icon: faShoppingCart, color: "#FF6347" }, // Tomato
@@ -39,19 +40,43 @@ const categories = [
 ];
 
 const Main = () => {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [isCategoryInfoOpen, setIsCategoryInfoOpen] = useState(false);
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category.name);
+    setIsCategoryInfoOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsCategoryInfoOpen(false);
+  };
+
   return (
     <div className="categories">
       <h1 className="categories-header">Категории</h1>
       <div className="category-grid">
         {categories.map((category, index) => (
-          <div key={index} className="category">
-            <div className="icon" style={{ backgroundColor: category.color }}>
+          <div
+            key={index}
+            className="category"
+            onClick={() => handleCategoryClick(category)}
+          >
+            <div
+              className="icon category-circle"
+              style={{ backgroundColor: category.color }}
+            >
               <FontAwesomeIcon icon={category.icon} />
             </div>
             <div className="text">{category.name}</div>
           </div>
         ))}
       </div>
+      <CategoryInfo
+        isOpen={isCategoryInfoOpen}
+        onClose={handleClose}
+        selectedCategory={selectedCategory}
+      />
       <Footer />
     </div>
   );
